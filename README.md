@@ -1,25 +1,25 @@
 # 💎 Glassmorphism Dashboard
 
-Un dashboard moderno y responsivo construido con React, enfocado en UX/UI avanzado utilizando efectos de vidrio (Glassmorphism), animaciones fluidas y visualización de datos.
+A modern, responsive dashboard built with React, featuring advanced UX/UI design focused on Glassmorphism effects, smooth animations, and interactive data visualization.
 
 ![Dashboard Preview](./preview.png)
 
 ## 🚀 Live Demo
-[Ver Proyecto Online en Vercel](https://dashboard-glass-ui.vercel.app/)
+[View Live Project on Vercel](https://dashboard-glass-ui.vercel.app/)
 
-## ✨ Características Principales
-* **🎨 Glassmorphism UI:** Diseño estético con desenfoques, transparencias y gradientes.
-* **🌗 Dark/Light Mode:** Cambio de tema dinámico con persistencia visual.
-* **📈 Gráficos Interactivos:** Visualización de datos con `recharts` y tooltips personalizados.
-* **⚡ Animaciones:** Transiciones suaves usando `framer-motion` para una experiencia premium.
-* **📱 Responsive:** Adaptable a escritorio y móvil.
+## ✨ Key Features
+* **🎨 Glassmorphism UI:** Aesthetic design utilizing backdrop blurs, transparencies, and deep gradients.
+* **🌗 Dark/Light Mode:** Dynamic theme switching with instant visual feedback.
+* **📈 Interactive Charts:** Data visualization powered by `recharts` with custom-styled tooltips.
+* **⚡ Smooth Animations:** Premium user experience with fluid transitions using `framer-motion`.
+* **📱 Fully Responsive:** Optimized layout for both desktop and mobile devices.
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Tech Stack
 * React + Vite
-* Tailwind CSS (Estilos avanzados)
-* Framer Motion (Animaciones)
-* Recharts (Data viz)
-* Lucide React (Iconografía)
+* Tailwind CSS (Advanced Styling)
+* Framer Motion (Animations)
+* Recharts (Data Visualization)
+* Lucide React (Icons)
 
 ---
-Hecho con ❤️ por [Carlos Gordillo](https://github.com/c26200)
+Made with ❤️ by [Carlos Gordillo](https://github.com/c26200)
