@@ -2,7 +2,7 @@
 
 Un dashboard moderno y responsivo construido con React, enfocado en UX/UI avanzado utilizando efectos de vidrio (Glassmorphism), animaciones fluidas y visualización de datos.
 
-![Dashboard Preview](https://via.placeholder.com/800x400?text=Sube+tu+captura+aqui)
+![Dashboard Preview](./preview.png)
 
 ## 🚀 Live Demo
 [Ver Proyecto Online en Vercel](https://dashboard-glass-ui.vercel.app/)
