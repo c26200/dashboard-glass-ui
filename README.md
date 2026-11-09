@@ -1,25 +1,56 @@
-# 💎 Glassmorphism Dashboard
+# Glass Dashboard
 
-A modern, responsive dashboard built with React, featuring advanced UX/UI design focused on Glassmorphism effects, smooth animations, and interactive data visualization.
+A dark-first analytics dashboard built with React, Tailwind CSS and Recharts. The interface
+is built on glassmorphism: translucent surfaces over a radial gradient, with a light theme
+you can toggle from the header.
 
-![Dashboard Preview](./preview.png)
+**[Live demo](https://dashboard-glass-ui.vercel.app)**
 
-## 🚀 Live Demo
-[View Live Project on Vercel](https://dashboard-glass-ui.vercel.app/)
+![Dashboard preview](./preview.png)
 
-## ✨ Key Features
-* **🎨 Glassmorphism UI:** Aesthetic design utilizing backdrop blurs, transparencies, and deep gradients.
-* **🌗 Dark/Light Mode:** Dynamic theme switching with instant visual feedback.
-* **📈 Interactive Charts:** Data visualization powered by `recharts` with custom-styled tooltips.
-* **⚡ Smooth Animations:** Premium user experience with fluid transitions using `framer-motion`.
-* **📱 Fully Responsive:** Optimized layout for both desktop and mobile devices.
+## What it does
 
-## 🛠️ Tech Stack
-* React + Vite
-* Tailwind CSS (Advanced Styling)
-* Framer Motion (Animations)
-* Recharts (Data Visualization)
-* Lucide React (Icons)
+- Four KPI cards — revenue, users, sales, activity — driven by a single `StatsCard`
+  component with per-card accent colors
+- Revenue area chart built with Recharts, including a custom tooltip
+- Recent transactions list with status badges for completed, pending and failed payments
+- Fixed sidebar with the active section highlighted
+- Theme toggle that swaps the background gradient, text colors and card surfaces
 
----
-Made with ❤️ by [Carlos Gordillo](https://github.com/c26200)
+## Stack
+
+React 19 · Vite · Tailwind CSS · Framer Motion · Recharts · Lucide React
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+The dev server starts at `http://localhost:5173`. To build:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Structure
+
+```
+src/
+├── components/
+│   ├── GlassCard.jsx          # Reusable translucent surface
+│   ├── Sidebar.jsx
+│   ├── SalesChart.jsx         # Recharts area chart
+│   └── RecentTransactions.jsx
+├── App.jsx                    # Layout, KPI grid and theme state
+└── index.css
+```
+
+## Notes
+
+The dashboard is a frontend exercise. Every figure, chart point and transaction is
+hardcoded inside the components — there is no API, database or authentication behind it.
+The layout is designed for desktop and collapses to a single column below 1024 px; the
+sidebar stays fixed.
