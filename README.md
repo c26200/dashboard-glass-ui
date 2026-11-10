@@ -1,4 +1,4 @@
-# DashGlass — Analytics Dashboard
+# DashLoud — Analytics Dashboard
 
 A brutalist analytics dashboard built with React, Tailwind CSS and Recharts. White field,
 3px black borders, hard offset shadows and one electric accent; the theme toggle flips the
@@ -6,7 +6,7 @@ whole system to dark without losing the structure.
 
 **[Live demo](https://dashboard-glass-ui.vercel.app)**
 
-![Dashboard preview](./preview.png?v=2)
+![Dashboard preview](./preview.png?v=3)
 
 ## What it does
 

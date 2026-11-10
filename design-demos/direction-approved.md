@@ -1,4 +1,4 @@
-# Dirección aprobada — Glass Dashboard
+# Dirección aprobada — DashLoud
 
 **Fecha:** 2026-11-09
 

@@ -17,7 +17,7 @@ export default function App() {
   return (
     <div className={'app' + (isDark ? ' dark' : '')}>
       <header className="topbar">
-        <div className="logo-block">DASHGLASS</div>
+        <div className="logo-block">DASHLOUD</div>
 
         <nav className="nav-chips">
           {NAV.map((label, i) => (
@@ -67,7 +67,7 @@ export default function App() {
 
       <footer className="footbar">
         <span>
-          DASHGLASS / <b>ANALYTICS SYSTEM</b>
+          DASHLOUD / <b>ANALYTICS SYSTEM</b>
         </span>
         <span>DATA UPDATED 13:00 UTC</span>
       </footer>

@@ -1,4 +1,4 @@
-# Glass Dashboard — Rediseño 2026
+# DashLoud — Rediseño 2026
 
 ## Spec (común a las tres direcciones)
 
