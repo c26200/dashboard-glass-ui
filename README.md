@@ -1,8 +1,8 @@
-# Glass Dashboard
+# DashGlass — Analytics Dashboard
 
-A dark-first analytics dashboard built with React, Tailwind CSS and Recharts. The interface
-is built on glassmorphism: translucent surfaces over a radial gradient, with a light theme
-you can toggle from the header.
+A brutalist analytics dashboard built with React, Tailwind CSS and Recharts. White field,
+3px black borders, hard offset shadows and one electric accent; the theme toggle flips the
+whole system to dark without losing the structure.
 
 **[Live demo](https://dashboard-glass-ui.vercel.app)**
 
@@ -10,16 +10,16 @@ you can toggle from the header.
 
 ## What it does
 
-- Four KPI cards — revenue, users, sales, activity — driven by a single `StatsCard`
-  component with per-card accent colors
-- Revenue area chart built with Recharts, including a custom tooltip
-- Recent transactions list with status badges for completed, pending and failed payments
-- Fixed sidebar with the active section highlighted
-- Theme toggle that swaps the background gradient, text colors and card surfaces
+- Four KPI cards — revenue, users, sales, activity — with hard-edged shadows and
+  color-coded emphasis
+- Revenue line chart built with Recharts: black stroke, square markers and a custom tooltip
+- Recent transactions with status chips (OK / WAIT / FAIL) and signed amounts
+- Top navigation with the active section inverted
+- Light/dark toggle that swaps the entire palette, not just the background
 
 ## Stack
 
-React 19 · Vite · Tailwind CSS · Framer Motion · Recharts · Lucide React
+React 19 · Vite · Tailwind CSS · Recharts
 
 ## Run locally
 
@@ -40,17 +40,14 @@ npm run preview
 ```
 src/
 ├── components/
-│   ├── GlassCard.jsx          # Reusable translucent surface
-│   ├── Sidebar.jsx
-│   ├── SalesChart.jsx         # Recharts area chart
-│   └── RecentTransactions.jsx
-├── App.jsx                    # Layout, KPI grid and theme state
-└── index.css
+│   ├── SalesChart.jsx         # Recharts line chart and tooltip
+│   └── RecentTransactions.jsx # Status chips and signed amounts
+├── App.jsx                    # Top bar, KPI grid, layout and theme state
+└── index.css                  # Brutalist tokens and light/dark palette
 ```
 
 ## Notes
 
 The dashboard is a frontend exercise. Every figure, chart point and transaction is
 hardcoded inside the components — there is no API, database or authentication behind it.
-The layout is designed for desktop and collapses to a single column below 1024 px; the
-sidebar stays fixed.
+The layout targets desktop and stacks into a single column below 1100 px.

@@ -1,4 +1,4 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [
   { name: 'Mon', value: 4000 },
@@ -10,75 +10,78 @@ const data = [
   { name: 'Sun', value: 3490 },
 ];
 
-// Este es el cuadrito que sale cuando pasas el mouse (Toolip Personalizado)
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="rounded-xl border border-white/10 bg-dark-card/90 p-4 backdrop-blur-md shadow-xl">
-        <p className="mb-2 text-sm font-medium text-gray-400">{label}</p>
-        <p className="text-xl font-bold text-blue-400">
-          ${payload[0].value.toLocaleString()}
-        </p>
-      </div>
-    );
-  }
-  return null;
-};
+const SquareDot = ({ cx, cy, ink }) => (
+  <rect x={cx - 6} y={cy - 6} width={12} height={12} fill="#5200FF" stroke={ink} strokeWidth={3} />
+);
 
-const SalesChart = () => {
+const BrutalTooltip = ({ active, payload, label, isDark }) => {
+  if (!active || !payload || !payload.length) return null;
+  const border = isDark ? '#F5F3FF' : '#08080D';
+
   return (
-    <div className="h-[400px] w-full p-4">
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-xl font-bold text-white">Revenue Analytics</h2>
-        <select className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-400 focus:outline-none">
-          <option>This Week</option>
-          <option>Last Week</option>
-        </select>
+    <div
+      style={{
+        background: isDark ? '#111116' : '#FFFFFF',
+        color: isDark ? '#F5F3FF' : '#08080D',
+        border: `3px solid ${border}`,
+        boxShadow: `5px 5px 0 ${border}`,
+        padding: '8px 12px',
+        fontFamily: "'JetBrains Mono', monospace",
+      }}
+    >
+      <div style={{ fontSize: 12, letterSpacing: '.06em' }}>{label}</div>
+      <div style={{ fontSize: 18, fontWeight: 500 }}>
+        ${payload[0].value.toLocaleString()}
       </div>
-
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data}>
-          <defs>
-            {/* Gradiente Azul para el relleno */}
-            <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-          
-          <XAxis 
-            dataKey="name" 
-            axisLine={false} 
-            tickLine={false} 
-            tick={{ fill: '#9ca3af', fontSize: 12 }} 
-            dy={10}
-          />
-          <YAxis 
-            axisLine={false} 
-            tickLine={false} 
-            tick={{ fill: '#9ca3af', fontSize: 12 }} 
-            tickFormatter={(value) => `$${value}`}
-          />
-          
-          <Tooltip content={<CustomTooltip />} />
-          
-          <Area 
-            type="monotone" 
-            dataKey="value" 
-            stroke="#3b82f6" 
-            strokeWidth={3}
-            fillOpacity={1} 
-            fill="url(#colorValue)" 
-            // AGREGA ESTAS DOS LÍNEAS PARA LA ANIMACIÓN LENTA:
-            animationDuration={2000} 
-            animationEasing="ease-in-out"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
     </div>
   );
 };
 
-export default SalesChart;
+export default function SalesChart({ isDark }) {
+  const ink = isDark ? '#F5F3FF' : '#08080D';
+  const grid = isDark ? '#2A2A33' : '#D9D9D9';
+  const muted = isDark ? '#B9B6C8' : '#4A4A4A';
+
+  return (
+    <section className="panel">
+      <div className="panel-head">
+        <h2>REVENUE ANALYTICS</h2>
+        <span>MON — SUN</span>
+      </div>
+
+      <div className="chart-box">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data} margin={{ top: 14, right: 12, left: 0, bottom: 0 }}>
+            <CartesianGrid stroke={grid} vertical={false} />
+            <XAxis
+              dataKey="name"
+              axisLine={{ stroke: ink }}
+              tickLine={false}
+              tick={{ fill: muted, fontSize: 12, fontFamily: "'JetBrains Mono', monospace" }}
+              dy={8}
+            />
+            <YAxis
+              axisLine={false}
+              tickLine={false}
+              width={54}
+              tick={{ fill: muted, fontSize: 12, fontFamily: "'JetBrains Mono', monospace" }}
+              tickFormatter={(v) => `$${(v / 1000).toFixed(1)}k`}
+            />
+            <Tooltip
+              content={<BrutalTooltip isDark={isDark} />}
+              cursor={{ stroke: ink, strokeWidth: 2 }}
+            />
+            <Line
+              type="linear"
+              dataKey="value"
+              stroke={ink}
+              strokeWidth={4}
+              dot={(p) => <SquareDot key={p.index} {...p} ink={ink} />}
+              activeDot={{ r: 7, fill: '#5200FF', stroke: ink, strokeWidth: 3 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </section>
+  );
+}

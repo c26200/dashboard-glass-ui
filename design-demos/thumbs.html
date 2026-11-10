@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Glass Dashboard — six candidates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #d9d9d4; padding: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 480px); gap: 18px 18px; width: max-content; }
+  .cell { width: 480px; }
+  figcaption { font: 500 10px/1 "Inter", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #333; padding: 7px 0 0; }
+  .thumb { width: 480px; height: 300px; position: relative; overflow: hidden; outline: 1px solid rgba(0,0,0,.15); }
+
+  /* 1 · System 72 */
+  .t1 { background: #F2F3F0; color: #141414; padding: 12px 14px; font-family: "Archivo", sans-serif; display: grid; grid-template-columns: 62px 1fr; gap: 12px; }
+  .t1 .side { border-right: 2px solid #141414; padding-right: 8px; font-size: 6.5px; line-height: 2.1; letter-spacing: .08em; }
+  .t1 .side b { color: #1F6FB2; }
+  .t1 .main .h { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #141414; padding-bottom: 4px; }
+  .t1 .main .h b { font-size: 13px; font-weight: 700; }
+  .t1 .main .h span { font-family: "JetBrains Mono", monospace; font-size: 6px; }
+  .t1 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 7px; }
+  .t1 .kpi { border-top: 4px solid #1F6FB2; padding-top: 4px; }
+  .t1 .kpi.g { border-color: #2E7D4F; } .t1 .kpi.o { border-color: #E07A1F; }
+  .t1 .kpi .l { font-size: 5.5px; letter-spacing: .1em; color: #555; }
+  .t1 .kpi .v { font-size: 13px; font-weight: 700; margin-top: 2px; }
+  .t1 .row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; margin-top: 8px; }
+  .t1 .chart { border: 1px solid #C9CCC6; padding: 4px; }
+  .t1 .tx { border: 1px solid #C9CCC6; padding: 4px 6px; font-size: 5.5px; line-height: 2; }
+  .t1 .tx div { display: flex; justify-content: space-between; border-bottom: 1px solid #E0E2DC; }
+
+  /* 2 · Vignelli */
+  .t2 { background: #FFFFFF; color: #111; padding: 12px 14px; font-family: "Archivo", sans-serif; }
+  .t2 .h { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 6px solid #D0021B; padding-bottom: 5px; }
+  .t2 .h b { font-size: 20px; font-weight: 900; letter-spacing: -.02em; }
+  .t2 .h span { font-size: 6px; letter-spacing: .12em; }
+  .t2 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 8px; border-top: 1px solid #111; border-bottom: 1px solid #111; }
+  .t2 .kpi { padding: 5px 6px; border-right: 1px solid #111; }
+  .t2 .kpi:last-child { border-right: none; }
+  .t2 .kpi .l { font-size: 5.5px; letter-spacing: .1em; }
+  .t2 .kpi .v { font-size: 14px; font-weight: 700; margin-top: 1px; }
+  .t2 .body { display: grid; grid-template-columns: 1.5fr 1fr; gap: 12px; margin-top: 8px; }
+  .t2 .chart { border-top: 1px solid #111; padding-top: 4px; }
+  .t2 .tx { font-size: 5.5px; line-height: 2; }
+  .t2 .tx div { display: flex; justify-content: space-between; border-bottom: 1px solid #DDD; }
+
+  /* 3 · Stripe */
+  .t3 { background: #FFFFFF; color: #1A1F36; padding: 10px 14px; font-family: "Inter", sans-serif; display: grid; grid-template-columns: 74px 1fr; gap: 10px; }
+  .t3 .side { border-right: 1px solid #E3E8EE; font-size: 6px; color: #697386; line-height: 2.4; }
+  .t3 .side b { color: #635BFF; }
+  .t3 .h { display: flex; justify-content: space-between; align-items: baseline; }
+  .t3 .h b { font-size: 12px; }
+  .t3 .h span { font-size: 6px; color: #697386; }
+  .t3 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 6px; }
+  .t3 .kpi { border: 1px solid #E3E8EE; border-radius: 4px; padding: 5px 6px; }
+  .t3 .kpi .l { font-size: 5.5px; color: #697386; }
+  .t3 .kpi .v { font-size: 12px; font-weight: 600; margin-top: 1px; }
+  .t3 .chart { border: 1px solid #E3E8EE; border-radius: 4px; margin-top: 6px; padding: 4px; }
+  .t3 .tx { margin-top: 6px; font-size: 5.5px; line-height: 2.1; color: #3C4257; }
+  .t3 .tx div { display: flex; justify-content: space-between; border-bottom: 1px solid #F0F2F5; }
+
+  /* 4 · Signal Dark */
+  .t4 { background: #0B0D12; color: #E8EAF0; padding: 10px 14px; font-family: "Inter", sans-serif; display: grid; grid-template-columns: 70px 1fr; gap: 10px; }
+  .t4 .side { border-right: 1px solid #1E232E; font-size: 6px; color: #7C8595; line-height: 2.4; }
+  .t4 .side b { color: #7C5CFF; }
+  .t4 .h { display: flex; justify-content: space-between; align-items: baseline; }
+  .t4 .h b { font-size: 12px; }
+  .t4 .h span { font-family: "JetBrains Mono", monospace; font-size: 5.5px; color: #7C8595; }
+  .t4 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 6px; }
+  .t4 .kpi { border: 1px solid #1E232E; padding: 5px 6px; }
+  .t4 .kpi .l { font-size: 5.5px; letter-spacing: .08em; color: #7C8595; }
+  .t4 .kpi .v { font-size: 12px; font-weight: 600; margin-top: 1px; }
+  .t4 .kpi .v.v { color: #7C5CFF; }
+  .t4 .row { display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; margin-top: 6px; }
+  .t4 .chart { border: 1px solid #1E232E; padding: 4px; }
+  .t4 .tx { border: 1px solid #1E232E; padding: 4px 6px; font-size: 5.5px; line-height: 2.1; color: #B6BECE; }
+  .t4 .tx div { display: flex; justify-content: space-between; border-bottom: 1px solid #171B23; }
+
+  /* 5 · Brutal Data */
+  .t5 { background: #FFFFFF; color: #08080D; padding: 12px 14px; font-family: "Space Grotesk", sans-serif; }
+  .t5 .h { display: flex; justify-content: space-between; align-items: center; }
+  .t5 .h b { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
+  .t5 .h .pill { background: #5200FF; color: #FFF; border: 2px solid #08080D; box-shadow: 3px 3px 0 #08080D; padding: 3px 8px; font-size: 6px; }
+  .t5 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 9px; }
+  .t5 .kpi { border: 2px solid #08080D; box-shadow: 3px 3px 0 #08080D; padding: 5px 6px; background: #FFF; }
+  .t5 .kpi.y { background: #F8E000; }
+  .t5 .kpi .l { font-size: 5.5px; letter-spacing: .06em; }
+  .t5 .kpi .v { font-size: 13px; font-weight: 700; margin-top: 1px; }
+  .t5 .row { display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; margin-top: 8px; }
+  .t5 .chart { border: 2px solid #08080D; box-shadow: 3px 3px 0 #08080D; padding: 4px; }
+  .t5 .tx { border: 2px solid #08080D; box-shadow: 3px 3px 0 #08080D; padding: 4px 6px; font-size: 5.5px; line-height: 2; }
+  .t5 .tx div { display: flex; justify-content: space-between; border-bottom: 1px solid #DDD; }
+
+  /* 6 · HK Signs */
+  .t6 { background: #14100E; color: #FFF7E6; padding: 8px 10px; font-family: "Archivo", sans-serif; display: grid; grid-template-columns: 1.1fr 1fr; gap: 6px; }
+  .t6 .sign { border: 2px solid #FFF7E6; box-shadow: 0 0 0 2px #000, 0 0 10px rgba(255,255,255,.25); padding: 5px 7px; }
+  .t6 .red { background: #C21F1A; } .t6 .yellow { background: #F2B705; color: #111; } .t6 .blue { background: #1B4FBF; }
+  .t6 .sign .l { font-size: 6px; letter-spacing: .1em; }
+  .t6 .sign .v { font-size: 16px; font-weight: 900; margin-top: 1px; }
+  .t6 .stack { display: flex; flex-direction: column; gap: 5px; }
+  .t6 .vtext { writing-mode: vertical-rl; font-size: 10px; font-weight: 900; letter-spacing: .16em; background: #2E7D32; border: 2px solid #FFF7E6; padding: 4px; }
+  .t6 .tx { grid-column: 1 / -1; font-size: 5.5px; line-height: 2; border-top: 2px solid #FFF7E6; margin-top: 2px; padding-top: 3px; }
+  .t6 .tx div { display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<div class="grid">
+
+  <figure class="cell"><div class="thumb t1">
+    <div class="side">OVERVIEW<br><b>CUSTOMERS</b><br>ANALYTICS<br>SETTINGS</div>
+    <div class="main">
+      <div class="h"><b>Dashboard</b><span>WELCOME BACK, CARLOS</span></div>
+      <div class="kpis">
+        <div class="kpi"><div class="l">REVENUE</div><div class="v">$45,231</div></div>
+        <div class="kpi g"><div class="l">USERS</div><div class="v">2,350</div></div>
+        <div class="kpi o"><div class="l">SALES</div><div class="v">12,234</div></div>
+        <div class="kpi"><div class="l">ACTIVITY</div><div class="v">573</div></div>
+      </div>
+      <div class="row">
+        <div class="chart"><svg width="100%" height="82" viewBox="0 0 180 82"><polyline points="0,70 25,62 50,68 75,44 100,50 125,28 150,36 180,12" fill="none" stroke="#1F6FB2" stroke-width="2"/></svg></div>
+        <div class="tx"><div><span>Apple Store</span><b>-$1,200</b></div><div><span>Freelance</span><b>+$2,450</b></div><div><span>AWS</span><b>-$124</b></div><div><span>Netflix</span><b>-$15</b></div></div>
+      </div>
+    </div>
+  </div><figcaption>01 · Otl Aicher — System 72</figcaption></figure>
+
+  <figure class="cell"><div class="thumb t2">
+    <div class="h"><b>Dashboard</b><span>OVERVIEW · CUSTOMERS · SETTINGS</span></div>
+    <div class="kpis">
+      <div class="kpi"><div class="l">REVENUE</div><div class="v">$45,231</div></div>
+      <div class="kpi"><div class="l">USERS</div><div class="v">2,350</div></div>
+      <div class="kpi"><div class="l">SALES</div><div class="v">12,234</div></div>
+      <div class="kpi"><div class="l">ACTIVITY</div><div class="v">573</div></div>
+    </div>
+    <div class="body">
+      <div class="chart"><svg width="100%" height="95" viewBox="0 0 200 95"><polyline points="0,80 28,70 56,76 84,48 112,56 140,30 168,38 200,10" fill="none" stroke="#D0021B" stroke-width="2.5"/></svg></div>
+      <div class="tx"><div><span>Apple Store</span><b>-$1,200</b></div><div><span>Freelance</span><b>+$2,450</b></div><div><span>AWS</span><b>-$124</b></div><div><span>Netflix</span><b>-$15</b></div><div><span>Gym</span><b>-$45</b></div></div>
+    </div>
+  </div><figcaption>02 · Vignelli — Helvetica Grid</figcaption></figure>
+
+  <figure class="cell"><div class="thumb t3">
+    <div class="side">OVERVIEW<br><b>CUSTOMERS</b><br>ANALYTICS<br>SETTINGS</div>
+    <div>
+      <div class="h"><b>Dashboard</b><span>Welcome back, Carlos</span></div>
+      <div class="kpis">
+        <div class="kpi"><div class="l">Total revenue</div><div class="v">$45,231</div></div>
+        <div class="kpi"><div class="l">Active users</div><div class="v">2,350</div></div>
+        <div class="kpi"><div class="l">Sales</div><div class="v">12,234</div></div>
+        <div class="kpi"><div class="l">Activity</div><div class="v">573</div></div>
+      </div>
+      <div class="chart"><svg width="100%" height="70" viewBox="0 0 220 70"><polyline points="0,58 30,50 60,56 90,34 120,40 150,22 180,28 220,8" fill="none" stroke="#635BFF" stroke-width="2"/></svg></div>
+      <div class="tx"><div><span>Apple Store</span><b>-$1,200</b></div><div><span>Freelance Payment</span><b>+$2,450</b></div><div><span>Netflix</span><b>-$15</b></div></div>
+    </div>
+  </div><figcaption>03 · Stripe — Calm Data</figcaption></figure>
+
+  <figure class="cell"><div class="thumb t4">
+    <div class="side">OVERVIEW<br><b>CUSTOMERS</b><br>ANALYTICS<br>SETTINGS</div>
+    <div>
+      <div class="h"><b>Dashboard</b><span>17:40:58</span></div>
+      <div class="kpis">
+        <div class="kpi"><div class="l">REVENUE</div><div class="v v">$45,231</div></div>
+        <div class="kpi"><div class="l">USERS</div><div class="v">2,350</div></div>
+        <div class="kpi"><div class="l">SALES</div><div class="v">12,234</div></div>
+        <div class="kpi"><div class="l">ACTIVITY</div><div class="v">573</div></div>
+      </div>
+      <div class="row">
+        <div class="chart"><svg width="100%" height="84" viewBox="0 0 180 84"><polyline points="0,72 25,64 50,70 75,46 100,52 125,30 150,38 180,12" fill="none" stroke="#7C5CFF" stroke-width="2"/></svg></div>
+        <div class="tx"><div><span>Apple Store</span><b>-$1,200</b></div><div><span>Freelance</span><b>+$2,450</b></div><div><span>AWS</span><b>-$124</b></div><div><span>Netflix</span><b>-$15</b></div></div>
+      </div>
+    </div>
+  </div><figcaption>04 · Linear — Signal Dark</figcaption></figure>
+
+  <figure class="cell"><div class="thumb t5">
+    <div class="h"><b>DASHBOARD</b><span class="pill">LIVE · 2026</span></div>
+    <div class="kpis">
+      <div class="kpi y"><div class="l">REVENUE</div><div class="v">$45,231</div></div>
+      <div class="kpi"><div class="l">USERS</div><div class="v">2,350</div></div>
+      <div class="kpi"><div class="l">SALES</div><div class="v">12,234</div></div>
+      <div class="kpi"><div class="l">ACTIVITY</div><div class="v">573</div></div>
+    </div>
+    <div class="row">
+      <div class="chart"><svg width="100%" height="84" viewBox="0 0 180 84"><polyline points="0,72 25,64 50,70 75,46 100,52 125,30 150,38 180,12" fill="none" stroke="#5200FF" stroke-width="3"/></svg></div>
+      <div class="tx"><div><span>Apple Store</span><b>-$1,200</b></div><div><span>Freelance</span><b>+$2,450</b></div><div><span>AWS</span><b>-$124</b></div><div><span>Netflix</span><b>-$15</b></div></div>
+    </div>
+  </div><figcaption>05 · Neo-brutalism — Brutal Data</figcaption></figure>
+
+  <figure class="cell"><div class="thumb t6">
+    <div class="stack">
+      <div class="sign red"><div class="l">REVENUE</div><div class="v">$45,231</div></div>
+      <div class="sign yellow"><div class="l">USERS</div><div class="v">2,350</div></div>
+      <div class="sign blue"><div class="l">SALES</div><div class="v">12,234</div></div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <div class="vtext">DASHBOARD</div>
+      <div class="stack" style="flex:1">
+        <div class="sign red"><div class="l">ACTIVITY</div><div class="v">573</div></div>
+        <div class="sign yellow"><div class="l">RETURN</div><div class="v">+20.1%</div></div>
+      </div>
+    </div>
+    <div class="tx"><div><span>APPLE STORE</span><b>-$1,200</b></div><div><span>FREELANCE</span><b>+$2,450</b></div><div><span>NETFLIX</span><b>-$15</b></div></div>
+  </div><figcaption>06 · HK Street Signs — Signage Wall</figcaption></figure>
+
+</div>
+</body>
+</html>

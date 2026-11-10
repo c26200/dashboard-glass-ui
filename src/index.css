@@ -1,27 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #FFFFFF;
+  --ink: #08080D;
+  --card: #FFFFFF;
+  --muted: #4A4A4A;
+  --border: #08080D;
+  --grid: #D9D9D9;
+  --purple: #5200FF;
+  --purple-text: #5200FF;
+  --yellow: #F8E000;
+  --magenta: #B3124F;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+.dark {
+  --bg: #08080D;
+  --ink: #F5F3FF;
+  --card: #111116;
+  --muted: #B9B6C8;
+  --border: #F5F3FF;
+  --grid: #2A2A33;
+  --purple-text: #A78BFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
   margin: 0;
   padding: 0;
-  background: radial-gradient(circle at top left, #1e293b, #0f172a);
-  color: white;
+  background: #FFFFFF;
+  color: #08080D;
   min-height: 100vh;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Scrollbar moderno y sutil */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+#root { min-height: 100vh; }
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 26px 16px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-display);
 }
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* ── Top bar ─────────────────────────────────────────────── */
+.topbar { display: flex; justify-content: space-between; align-items: stretch; gap: 14px; flex: none; }
+.logo-block {
+  background: var(--yellow); color: #08080D;
+  border: 3px solid var(--border); box-shadow: 5px 5px 0 var(--border);
+  padding: 9px 16px 10px; font-size: 24px; font-weight: 700;
+  letter-spacing: -.02em; line-height: 1; white-space: nowrap;
 }
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+.nav-chips { display: flex; gap: 8px; align-items: center; }
+.chip {
+  border: 3px solid var(--border); background: var(--card); color: var(--ink);
+  padding: 8px 14px; font-size: 13px; font-weight: 500; text-decoration: none;
+  white-space: nowrap;
 }
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.4);
+.chip.on { background: var(--ink); color: var(--bg); }
+.top-right { display: flex; gap: 10px; align-items: center; }
+.theme-btn {
+  border: 3px solid var(--border); background: var(--card); color: var(--ink);
+  box-shadow: 5px 5px 0 var(--border); padding: 8px 12px;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em;
+}
+.live-pill {
+  background: var(--purple); color: #FFFFFF;
+  border: 3px solid var(--border); box-shadow: 5px 5px 0 var(--border);
+  padding: 9px 14px 10px; font-size: 12px; font-weight: 600;
+  letter-spacing: .08em; white-space: nowrap;
+}
+
+/* ── Headline ────────────────────────────────────────────── */
+.page-head { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 26px; flex: none; gap: 24px; }
+.page-head h1 {
+  font-size: 58px; font-weight: 700; letter-spacing: -.045em;
+  line-height: .9; margin: 0;
+}
+.page-head h1 em {
+  font-family: var(--font-serif); font-style: normal;
+  color: var(--purple-text); font-weight: 600;
+}
+.head-meta {
+  font-family: var(--font-mono); font-size: 12px; text-align: right;
+  line-height: 1.8; letter-spacing: .06em; white-space: nowrap;
+}
+
+/* ── KPI cards ───────────────────────────────────────────── */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 16px; flex: none; }
+.kpi {
+  border: 3px solid var(--border); box-shadow: 5px 5px 0 var(--border);
+  padding: 12px 14px 14px; background: var(--card); color: var(--ink);
+}
+.kpi.yellow { background: var(--yellow); color: #08080D; }
+.kpi.purple { background: var(--purple); color: #FFFFFF; }
+.kpi.purple .kpi-delta { color: #D9CCFF; }
+.kpi-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; }
+.kpi-value { font-size: 32px; font-weight: 700; letter-spacing: -.03em; margin-top: 3px; }
+.kpi-delta { font-family: var(--font-mono); font-size: 12px; margin-top: 2px; }
+
+/* ── Content panels ──────────────────────────────────────── */
+.content { display: grid; grid-template-columns: 1.55fr 1fr; gap: 18px; margin-top: 18px; flex: 1; min-height: 0; }
+.panel {
+  border: 3px solid var(--border); box-shadow: 5px 5px 0 var(--border);
+  background: var(--card); color: var(--ink);
+  display: flex; flex-direction: column; min-height: 0; padding: 12px 14px;
+}
+.panel-head {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 3px solid var(--border); padding-bottom: 7px; flex: none;
+}
+.panel-head h2 { font-size: 17px; font-weight: 700; letter-spacing: -.01em; margin: 0; }
+.panel-head span { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; }
+
+.chart-box { flex: 1; min-height: 0; margin-top: 6px; }
+
+/* ── Transactions ────────────────────────────────────────── */
+.tx-list { flex: 1; min-height: 0; overflow-y: auto; }
+.tx-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 0; border-bottom: 2px solid var(--grid); font-size: 13px;
+}
+.tx-row:last-child { border-bottom: none; }
+.tx-name { flex: 1; font-weight: 500; }
+.tx-name small {
+  display: block; font-family: var(--font-mono); font-size: 11px;
+  font-weight: 400; color: var(--muted); margin-top: 1px;
+}
+.tx-status {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em;
+  border: 2px solid var(--border); padding: 2px 6px; white-space: nowrap;
+}
+.tx-status.ok { background: var(--yellow); color: #08080D; }
+.tx-status.wait { background: var(--card); color: var(--ink); }
+.tx-status.fail { background: var(--magenta); color: #FFFFFF; }
+.tx-amt {
+  font-family: var(--font-mono); font-size: 13px;
+  width: 92px; text-align: right; white-space: nowrap;
+}
+.tx-amt.pos { color: var(--purple-text); font-weight: 500; }
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footbar {
+  flex: none; display: flex; justify-content: space-between; align-items: center;
+  margin-top: 16px; background: var(--ink); color: var(--bg);
+  padding: 8px 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em;
+}
+.footbar b { color: var(--yellow); }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--muted); }
+::-webkit-scrollbar-track { background: transparent; }
+
+@media (max-width: 1100px) {
+  .app { padding: 14px; }
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .content { grid-template-columns: 1fr; }
+  .page-head h1 { font-size: 42px; }
+  .nav-chips { display: none; }
 }
