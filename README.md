@@ -6,7 +6,7 @@ whole system to dark without losing the structure.
 
 **[Live demo](https://dashboard-glass-ui.vercel.app)**
 
-![Dashboard preview](./preview.png)
+![Dashboard preview](./preview.png?v=2)
 
 ## What it does
 
